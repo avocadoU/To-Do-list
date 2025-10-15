@@ -18,21 +18,25 @@ public class TaskRepository implements CrudRepository<Task, Long> {
 
     @Override
     public void create(Task task) {
-        // логика
+        taskContainer.add(task);
     }
 
     @Override
     public Task read(Long id) {
-        // логика
+        return taskContainer.stream()
+                .filter(task -> task.getId().equals(id))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
     public void update(Task task) {
-        // логика
+        delete(task.getId());
+        taskContainer.add(task);
     }
 
     @Override
     public void delete(Long id) {
-        // логика
+        taskContainer.removeIf(task -> task.getId().equals(id));
     }
 }
