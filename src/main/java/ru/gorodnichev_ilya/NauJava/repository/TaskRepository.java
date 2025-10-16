@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import ru.gorodnichev_ilya.NauJava.domain.Task;
 
+@Component
 public class TaskRepository implements CrudRepository<Task, Long> {
     private final List<Task> taskContainer;
 
