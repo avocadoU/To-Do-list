@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -19,6 +21,20 @@ public class Config {
 
     @Autowired
     private CommandProcessor commandProcessor;
+
+    @Value("${app.name}")
+    private String appName;
+
+    @Value("${app.version")
+    private String appVersion;
+
+    @PostConstruct
+    public void printAppInfo() {
+        System.out.println("=================================");
+        System.out.println("Application: " + appName);
+        System.out.println("Version: " + appVersion);
+        System.out.println("=================================");
+    }
 
     @Bean
     @Scope(value = BeanDefinition.SCOPE_SINGLETON)
