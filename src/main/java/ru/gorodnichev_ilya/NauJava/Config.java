@@ -19,21 +19,18 @@ import ru.gorodnichev_ilya.NauJava.service.CommandProcessor;
 @Configuration
 public class Config {
 
-    @Autowired
-    private CommandProcessor commandProcessor;
-
     @Value("${app.name}")
     private String appName;
 
-    @Value("${app.version")
+    @Value("${app.version}")
     private String appVersion;
 
     @PostConstruct
     public void printAppInfo() {
-        System.out.println("=================================");
+        System.out.println("\n=================================");
         System.out.println("Application: " + appName);
         System.out.println("Version: " + appVersion);
-        System.out.println("=================================");
+        System.out.println("=================================\n");
     }
 
     @Bean
@@ -43,7 +40,7 @@ public class Config {
     }
 
     @Bean
-    public CommandLineRunner commandScanner() {
+    public CommandLineRunner commandScanner(CommandProcessor commandProcessor) {
         return args -> {
             try (Scanner scanner = new Scanner(System.in)) {
                 System.out.println("Введите команду. 'exit' для выхода.");
