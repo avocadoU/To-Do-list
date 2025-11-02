@@ -19,25 +19,25 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void createTask(Long id, String nameTask, Optional<String> descriptionTask) {
         Task newTask = new Task();
-        newTask.setId(id);
-        newTask.setNameTask(nameTask);
-        newTask.setDescriptionTask(descriptionTask.orElse(null));
+        newTask.setTaskID(id);
+        newTask.setTaskName(nameTask);
+        newTask.setTaskDesc(descriptionTask.orElse(null));
         taskRepository.create(newTask);
     }
 
     @Override
     public void updateNameTask(Long id, String nameTask) {
         Task task = new Task();
-        task.setId(id);
-        task.setNameTask(nameTask);
+        task.setTaskID(id);
+        task.setTaskName(nameTask);
         taskRepository.update(task);
     }
 
     @Override
     public void updateDescriptionTask(Long id, String descriptionTask) {
         Task task = new Task();
-        task.setId(id);
-        task.setDescriptionTask(descriptionTask);
+        task.setTaskID(id);
+        task.setTaskDesc(descriptionTask);
         taskRepository.update(task);
     }
 
