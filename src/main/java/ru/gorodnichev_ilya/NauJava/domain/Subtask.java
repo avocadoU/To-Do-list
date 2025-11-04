@@ -20,7 +20,6 @@ public class Subtask {
 
     private LocalDateTime dueDate;
 
-
     private boolean isCompleted;
 
     private LocalDateTime createdAt;

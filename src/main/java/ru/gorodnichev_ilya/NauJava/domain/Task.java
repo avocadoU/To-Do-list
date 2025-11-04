@@ -3,7 +3,8 @@ package ru.gorodnichev_ilya.NauJava.domain;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "task")

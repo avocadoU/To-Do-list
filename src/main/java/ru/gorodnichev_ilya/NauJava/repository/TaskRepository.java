@@ -1,43 +1,8 @@
 package ru.gorodnichev_ilya.NauJava.repository;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-
+import org.springframework.data.repository.CrudRepository;
 import ru.gorodnichev_ilya.NauJava.domain.Task;
 
-@Component
-public class TaskRepository implements CrudRepository<Task, Long> {
-    private final List<Task> taskContainer;
+public interface TaskRepository extends CrudRepository<Task, Long> {
 
-    @Autowired
-    public TaskRepository(List<Task> taskContainer) {
-        this.taskContainer = taskContainer;
-    }
-
-    @Override
-    public void create(Task task) {
-        taskContainer.add(task);
-    }
-
-    @Override
-    public Task read(Long id) {
-        return taskContainer.stream()
-                .filter(task -> task.getTaskID().equals(id))
-                .findFirst()
-                .orElse(null);
-    }
-
-    @Override
-    public void update(Task task) {
-        delete(task.getTaskID());
-        taskContainer.add(task);
-    }
-
-    @Override
-    public void delete(Long id) {
-        taskContainer.removeIf(task -> task.getTaskID().equals(id));
-    }
 }
