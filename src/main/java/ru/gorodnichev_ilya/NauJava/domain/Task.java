@@ -27,17 +27,18 @@ public class Task {
     private LocalDateTime updatedAt;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = true)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category_id", nullable = true)
     private Category category;
 
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
     private List<Subtask> subtasks = new ArrayList<>();
 
-    @OneToOne(mappedBy = "task", cascade = CascadeType.ALL)
+    @OneToOne
+    @JoinColumn(name = "recurrence_id")
     private Recurrence recurrence;
 
     public Task() {}
@@ -47,6 +48,7 @@ public class Task {
         this.taskDesc = taskDesc;
         this.dueDate = dueDate;
         this.user = user;
+        this.category = category;
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
         this.isCompleted = false;
@@ -138,5 +140,10 @@ public class Task {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public void addSubtask(Subtask subtask) {
+        subtasks.add(subtask);
+        subtask.setTask(this);
     }
 }

@@ -80,4 +80,5 @@ public class User {
     public void addCategory(Category category) {
         categories.add(category);
     }
+
 }

@@ -12,7 +12,7 @@ public interface TaskService {
 
     void updateDescriptionTask(Long id, String descriptionTask);
 
-    Task findById(Long id);
+    Optional<Task> findById(Long id);
 
     void deleteById(Long id);
 }

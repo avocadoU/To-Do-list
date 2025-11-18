@@ -16,11 +16,19 @@ public class Category {
     private String categoryName;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = true)
     private User user;
 
     @OneToMany(mappedBy = "category")
     private List<Task> tasks = new ArrayList<>();
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
 
     public Long getCategoryID() {
         return categoryID;
