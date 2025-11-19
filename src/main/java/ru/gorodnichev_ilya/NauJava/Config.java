@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Scanner;
 
 import jakarta.annotation.PostConstruct;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.boot.CommandLineRunner;
@@ -40,8 +39,11 @@ public class Config {
     }
 
     @Bean
-    public CommandLineRunner commandScanner(CommandProcessor commandProcessor) {
+    public CommandLineRunner commandScanner(CommandProcessor commandProcessor,
+                                            @Value("${app.disable-runner:false}") boolean disableRunner) {
         return args -> {
+            if (disableRunner) return;
+
             try (Scanner scanner = new Scanner(System.in)) {
                 System.out.println("Введите команду. 'exit' для выхода.");
                 while (true) {
