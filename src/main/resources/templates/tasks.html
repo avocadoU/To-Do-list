@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title> Task List</title>
+</head>
+<body>
+<h1>Task List</h1>
+<table border ="1'">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Due Date</th>
+    </tr>
+    <tr th:each="c : ${categories}">
+        <td th:text="${c.id}"></td>
+        <td th:text="${c.name}"></td>
+    </tr>
+</table>
+</body>
+</html>
